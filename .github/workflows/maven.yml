@@ -37,18 +37,18 @@ jobs:
 
     steps:
 
+      - name: Checkout Servlet TCK
+        uses: actions/checkout@v3
+        with:
+          repository: 'olamy/jakartaee-tck'
+          ref: 'servlet-module-atleast'
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: 17
           distribution: 'temurin'
           cache: 'maven'
-
-      - name: Checkout Servlet TCK
-        uses: actions/checkout@v3
-        with:
-          repository: 'olamy/jakartaee-tck'
-          ref: 'servlet-module-atleast'
 
       - name: Install legacy javatest jar
         run: mvn  -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
