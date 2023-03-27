@@ -2,9 +2,9 @@
 
 pipeline {
   agent { node { label 'linux' } }
-  
+
   options {
-    buildDiscarder logRotator( numToKeepStr: '50' )
+    buildDiscarder logRotator( numToKeepStr: '5' )
   }
   parameters {
     string( defaultValue: 'servlet-module-atleast', description: 'GIT branch name to build TCK (master/servlet-module-atleast)',
