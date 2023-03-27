@@ -5,7 +5,7 @@
   <container qualifier="tomcat" default="true">
     <configuration>
       <!-- TODO use some filtering here -->
-      <property name="tomcatHome">target/tomcat/apache-tomcat-10.0.27</property>
+<!--      <property name="tomcatHome">target/tomcat/apache-tomcat-10.0.27</property>-->
       <property name="workDir">target/work</property>
       <property name="bindHttpPort">8888</property>
       <property name="unpackArchive">true</property>

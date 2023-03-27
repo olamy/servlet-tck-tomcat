@@ -62,6 +62,10 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.jboss.shrinkwrap</groupId>
+      <artifactId>shrinkwrap-api</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.jboss.arquillian.protocol</groupId>
       <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
       <scope>test</scope>
@@ -234,27 +238,27 @@
             </configuration>
           </execution>
 
-          <execution>
-            <id>unpack-tomcat</id>
-            <phase>generate-test-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${tomcat.root}</outputDirectory>
-              <markersDirectory>${tomcat.root}/dependency-maven-plugin-markers</markersDirectory>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.tomcat</groupId>
-                  <artifactId>tomcat</artifactId>
-                  <version>${tomcat.version}</version>
-                  <type>zip</type>
-                  <overWrite>false</overWrite>
-                  <outputDirectory>${tomcat.root}</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
+<!--          <execution>-->
+<!--            <id>unpack-tomcat</id>-->
+<!--            <phase>generate-test-resources</phase>-->
+<!--            <goals>-->
+<!--              <goal>unpack</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <outputDirectory>${tomcat.root}</outputDirectory>-->
+<!--              <markersDirectory>${tomcat.root}/dependency-maven-plugin-markers</markersDirectory>-->
+<!--              <artifactItems>-->
+<!--                <artifactItem>-->
+<!--                  <groupId>org.apache.tomcat</groupId>-->
+<!--                  <artifactId>tomcat</artifactId>-->
+<!--                  <version>${tomcat.version}</version>-->
+<!--                  <type>zip</type>-->
+<!--                  <overWrite>false</overWrite>-->
+<!--                  <outputDirectory>${tomcat.root}</outputDirectory>-->
+<!--                </artifactItem>-->
+<!--              </artifactItems>-->
+<!--            </configuration>-->
+<!--          </execution>-->
         </executions>
       </plugin>
       <plugin>
