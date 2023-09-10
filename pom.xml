@@ -23,7 +23,7 @@
     <fork.argLine>-Xmx8g -Xms4g</fork.argLine>
     <http2.timeout></http2.timeout>
     <tomcat.root>${project.build.directory}/tomcat</tomcat.root>
-    <tomcat.version>10.0.27</tomcat.version>
+    <tomcat.version>10.1.10</tomcat.version>
   </properties>
 
   <dependencyManagement>
