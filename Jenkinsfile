@@ -22,19 +22,19 @@ pipeline {
 
     stage("Checkout Build TCK Sources") {
       steps {
-        ws('arquillian') {
+        ws('tck') {
           deleteDir()
           checkout([$class: 'GitSCM',
                     branches: [[name: "*/$TCK_BRANCH"]],
                     extensions: [[$class: 'CloneOption', depth: 1, noTags: true, shallow: true]],
-                    userRemoteConfigs: [[url: 'https://github.com/${GITHUB_ORG_TCK}/jakartaee-tck']]])
+                    userRemoteConfigs: [[url: 'https://github.com/${GITHUB_ORG_TCK}/servlet']]])
           timeout(time: 30, unit: 'MINUTES') {
             withEnv(["JAVA_HOME=${tool "$JDKBUILD"}",
-                     "PATH+MAVEN=${env.JAVA_HOME}/bin:${tool "maven3"}/bin",
+                     "PATH+MAVEN=${env.JAVA_HOME}/bin:${tool 'maven3'}/bin",
                      "MAVEN_OPTS=-Xms2g -Xmx4g -Djava.awt.headless=true"]) {
               configFileProvider([configFile(fileId: 'oss-settings.xml', variable: 'GLOBAL_MVN_SETTINGS')]) {
-                sh "mvn -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar"
-                sh "mvn -ntp -s $GLOBAL_MVN_SETTINGS -V -B -U -pl :servlet -am clean install -DskipTests -e"
+                //sh "mvn -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar"
+                sh "mvn -ntp -s $GLOBAL_MVN_SETTINGS -V -B clean install -e -Dmaven.build.cache.remote.url=dav:http://nginx-cache-service.jenkins.svc.cluster.local:80 -Dmaven.build.cache.remote.enabled=true -Dmaven.build.cache.remote.save.enabled=true -Dmaven.build.cache.remote.server.id=remote-build-cache-server"
               }
             }
           }

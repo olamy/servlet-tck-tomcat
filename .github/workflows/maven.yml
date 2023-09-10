@@ -37,11 +37,17 @@ jobs:
 
     steps:
 
+#      - name: Checkout Servlet TCK
+#        uses: actions/checkout@v3
+#        with:
+#          repository: 'jakartaee/jakartaee-tck'
+#          ref: 'tckrefactor'
+#
       - name: Checkout Servlet TCK
         uses: actions/checkout@v4
         with:
-          repository: 'jakartaee/jakartaee-tck'
-          ref: 'tckrefactor'
+          repository: 'olamy/servlet'
+          ref: 'tck'
 
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -50,11 +56,14 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Install legacy javatest jar
-        run: mvn  -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
+#      - name: Install legacy javatest jar
+#        run: mvn  -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
+#
+#      - name: Build Servlet TCK with Maven
+#        run: mvn -V -B -U -pl :servlet -am clean install -DskipTests -e  -B -U
 
       - name: Build Servlet TCK with Maven
-        run: mvn -V -B -U -pl :servlet -am clean install -DskipTests -e  -B -U
+        run: mvn -V -B -U clean install -DskipTests -e  -B -U
 
       - name: Checkout TCK Run
         uses: actions/checkout@v4

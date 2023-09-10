@@ -19,7 +19,7 @@
     <arquillian.core.version>1.7.1.Final</arquillian.core.version> <!-- 1.7.0.Final-SNAPSHOT -->
     <arquillian.tomcat.version>2.0.0.Final-SNAPSHOT</arquillian.tomcat.version>
     <surefire.version>3.0.0</surefire.version> <!-- 3.0.0-M7-SNAPSHOT -->
-    <jakarta.tck.version>10.0.0-SNAPSHOT</jakarta.tck.version>
+    <jakarta.tck.version>6.1.0-SNAPSHOT</jakarta.tck.version>
     <fork.argLine>-Xmx8g -Xms4g</fork.argLine>
     <http2.timeout></http2.timeout>
     <tomcat.root>${project.build.directory}/tomcat</tomcat.root>
@@ -47,8 +47,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>jakartatck</groupId>
-      <artifactId>servlet</artifactId>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>tck-runtime</artifactId>
       <version>${jakarta.tck.version}</version>
       <exclusions>
         <exclusion>
@@ -90,17 +90,7 @@
       <artifactId>junit-vintage-engine</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>jakartatck</groupId>
-      <artifactId>libutil</artifactId>
-      <version>${jakarta.tck.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.glassfish.metro</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+
     <dependency>
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat</artifactId>
@@ -190,18 +180,11 @@
               -Djavax.net.ssl.trustStore=${project.build.directory}/cacerts.jks</argLine>
             <forkedProcessTimeoutInSeconds>15000</forkedProcessTimeoutInSeconds>
             <dependenciesToScan>
-              <dependenciesToScan>jakartatck:servlet</dependenciesToScan>
+              <dependenciesToScan>jakarta.servlet:tck-runtime</dependenciesToScan>
             </dependenciesToScan>
             <systemProperties>
               <http2.timeout>${http2.timeout}</http2.timeout>
             </systemProperties>
-            <includes>
-              <include>**/URLClient*</include>
-              <include>**/Client*</include>
-            </includes>
-            <excludes>
-              <exclude>**/BaseUrlClient</exclude>
-            </excludes>
             <trimStackTrace>false</trimStackTrace>
           </configuration>
         </plugin>
@@ -227,8 +210,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>jakartatck</groupId>
-                  <artifactId>libutil</artifactId>
+                  <groupId>jakarta.servlet</groupId>
+                  <artifactId>tck-runtime</artifactId>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${project.build.testOutputDirectory}/</outputDirectory>
