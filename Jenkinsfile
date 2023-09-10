@@ -7,13 +7,13 @@ pipeline {
     buildDiscarder logRotator( numToKeepStr: '5' )
   }
   parameters {
-    string( defaultValue: 'servlet-module-atleast', description: 'GIT branch name to build TCK (master/servlet-module-atleast)',
+    string( defaultValue: 'tckrefactor', description: 'GIT branch name to build TCK (master/tckrefactor)',
             name: 'TCK_BRANCH' )
 
     choice(
             description: 'TCK Github org',
             name: 'GITHUB_ORG_TCK',
-            choices: ['olamy','eclipse-ee4j']
+            choices: ['olamy','jakartaee']
     )
     string( defaultValue: 'jdk17', description: 'JDK to build Jetty', name: 'JDKBUILD' )
   }
