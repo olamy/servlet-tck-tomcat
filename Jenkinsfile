@@ -13,7 +13,7 @@ pipeline {
     choice(
             description: 'TCK Github org',
             name: 'GITHUB_ORG_TCK',
-            choices: ['olamy','jakartaee']
+            choices: ['jakartaee','olamy']
     )
     string( defaultValue: 'jdk17', description: 'JDK to build Jetty', name: 'JDKBUILD' )
   }
