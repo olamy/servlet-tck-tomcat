@@ -7,13 +7,13 @@ pipeline {
     buildDiscarder logRotator( numToKeepStr: '5' )
   }
   parameters {
-    string( defaultValue: 'tckrefactor', description: 'GIT branch name to build TCK (master/tckrefactor)',
+    string( defaultValue: 'tck', description: 'GIT branch name to build TCK (master/tck)',
             name: 'TCK_BRANCH' )
 
     choice(
             description: 'TCK Github org',
             name: 'GITHUB_ORG_TCK',
-            choices: ['jakartaee','olamy']
+            choices: ['olamy','jakartaee']
     )
     string( defaultValue: 'jdk17', description: 'JDK to run TCK', name: 'JDKBUILD' )
   }
