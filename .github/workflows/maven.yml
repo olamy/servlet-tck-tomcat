@@ -40,8 +40,8 @@ jobs:
       - name: Checkout Servlet TCK
         uses: actions/checkout@v3
         with:
-          repository: 'olamy/jakartaee-tck'
-          ref: 'servlet-module-atleast'
+          repository: 'jakartaee/jakartaee-tck'
+          ref: 'tckrefactor'
 
       - name: Set up JDK
         uses: actions/setup-java@v3
