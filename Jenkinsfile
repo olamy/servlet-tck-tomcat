@@ -15,7 +15,7 @@ pipeline {
             name: 'GITHUB_ORG_TCK',
             choices: ['jakartaee','olamy']
     )
-    string( defaultValue: 'jdk17', description: 'JDK to build Jetty', name: 'JDKBUILD' )
+    string( defaultValue: 'jdk17', description: 'JDK to run TCK', name: 'JDKBUILD' )
   }
 
   stages {
