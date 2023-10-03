@@ -38,7 +38,7 @@ jobs:
     steps:
 
       - name: Checkout Servlet TCK
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'jakartaee/jakartaee-tck'
           ref: 'tckrefactor'
@@ -57,7 +57,7 @@ jobs:
         run: mvn -V -B -U -pl :servlet -am clean install -DskipTests -e  -B -U
 
       - name: Checkout TCK Run
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build TCK Run with Maven
         run: mvn -V -B -U -am clean verify -e  -B -Dmaven.test.failure.ignore=true
